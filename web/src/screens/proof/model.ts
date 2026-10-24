@@ -9,6 +9,8 @@ export type Runs = {
   model: string | null;
   hash: string | null;
   accuracy: number[];
+  /** The eval's own status, e.g. "not_run_missing_credentials" before the live baseline has run. */
+  status: string | null;
 };
 
 const num = (v: unknown) => (typeof v === "number" && Number.isFinite(v) ? v : typeof v === "string" && v.trim() !== "" && Number.isFinite(Number(v)) ? Number(v) : null);
@@ -26,6 +28,7 @@ export function readRuns(d: Record<string, unknown> | undefined): Runs {
     model: typeof d?.model === "string" ? d.model : null,
     hash: typeof d?.hash === "string" ? d.hash : (hashes[0] ?? null),
     accuracy: nums(d?.cause_accuracy),
+    status: typeof d?.status === "string" ? d.status : null,
   };
 }
 
@@ -37,7 +40,7 @@ export function headline(baseline: Runs, sc: Runs) {
   const list = (r: Runs) => r.values.map(euros).join(" / ");
   const hash = (r: Runs) => (r.hashIdentical === true ? "same hash" : r.hashIdentical === false ? "hashes differ" : "hash not reported");
   return {
-    baseline: baseline.values.length ? `Plain Claude, ${baseline.runs} runs: ${list(baseline)}.` : "Plain Claude baseline: not reported.",
+    baseline: baseline.values.length ? `Plain Claude, ${baseline.runs} runs: ${list(baseline)}.` : baseline.status?.startsWith("not_run") ? "Plain Claude baseline: not run yet." : "Plain Claude baseline: not reported.",
     stormcheck: !sc.values.length ? "StormCheck runs: not reported." : sc.allSame ? `StormCheck: ${euros(sc.values[0])} ×${sc.runs}, ${hash(sc)}.` : `StormCheck, ${sc.runs} runs: ${list(sc)}, ${hash(sc)}.`,
   };
 }

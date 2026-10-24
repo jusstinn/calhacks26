@@ -27,8 +27,13 @@ export function RunsHero({ report }: { report: EvalReport }) {
       <div className="relative px-5 pt-6 md:px-9 md:pt-8">
         <p className="micro text-cloud-500">{base.runs ? `Same raw documents · ${base.runs} runs each` : "Same raw documents"}</p>
         <h2 id="proof-headline" className="display mt-4 text-[27px] leading-[1.08] text-pretty sm:text-[32px] md:text-[36px] xl:text-[40px]" data-testid="proof-headline">
-          <span className="block text-balance text-cloud-500">{h.baseline}</span> <span className="mt-1 block text-cloud-50">{h.stormcheck}</span>
+          {base.values.length ? <span className="block text-balance text-cloud-500">{h.baseline}</span> : null} <span className="mt-1 block text-cloud-50">{h.stormcheck}</span>
         </h2>
+        {base.values.length ? null : (
+          <p className="mt-3 font-mono text-[12px] text-cloud-500" data-testid="proof-baseline-note">
+            {h.baseline} {base.status?.startsWith("not_run") ? "It runs the same raw documents through the model alone once a live API key is set." : null}
+          </p>
+        )}
       </div>
       {base.values.length || sc.values.length ? <RunsPlot base={base} sc={sc} anchors={anchors} /> : <div className="h-6" />}
       <div className="relative grid grid-cols-[minmax(0,1fr)] gap-px border-t border-white/[0.07] bg-white/[0.07] sm:grid-cols-2">
@@ -52,6 +57,8 @@ function RunFacts({ title, runs, note, strong }: { title: string; runs: Runs; no
             </>
           ) : runs.hashIdentical === false ? (
             <>a different hash on each run</>
+          ) : runs.status?.startsWith("not_run") ? (
+            <>not run yet</>
           ) : (
             <>hash not reported</>
           )}

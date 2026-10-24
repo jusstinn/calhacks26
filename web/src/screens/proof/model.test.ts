@@ -37,6 +37,10 @@ describe("runs", () => {
     expect(h.baseline).toBe("Plain Claude baseline: not reported.");
     expect(headline(readRuns(baseline), readRuns({})).stormcheck).toBe("StormCheck runs: not reported.");
   });
+  it("says the baseline hasn't run yet when the eval says so", () => {
+    const h = headline(readRuns({ runs: 0, liability_eur: [], status: "not_run_missing_credentials" }), readRuns(stormcheck));
+    expect(h.baseline).toBe("Plain Claude baseline: not run yet.");
+  });
   it("puts the axis at a round number above everything", () => {
     expect(axisMax([41580, 99000, 27720, 34650])).toBe(100000);
     expect(axisMax([34650])).toBe(40000);
