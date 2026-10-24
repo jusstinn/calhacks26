@@ -13,10 +13,10 @@
 | J6 Liability & Close | B | done |
 | J7 Judge's Desk | B | done |
 | J8 Proof | B | done (reads `/eval`; mock values until F9) |
-| J9 Recorded mode + Vercel | B | done in code; recording waits for the server (CP3); preview deploys the mock world until then |
+| J9 Recorded mode + Vercel | B | done: the demo recorded on the D10a real engine (5 steps, 8.5 MB); the preview serves it with no backend. Re-record after the server changes: `node scripts/record.mjs --base http://localhost:8000` plus `make record` |
 | J11 `/pitch` slides | B | done |
 | `/story`: the scroll story on Éowyn (beyond the plan) | B | done |
-| Switch off mocks: `pnpm gen:api`, CP1 against the stub, then the server | A | waiting on David (CP0a) |
-| Record the demo (`pnpm record` against `make demo`) and redeploy | B | waiting on CP3 |
+| Switch off mocks: `pnpm gen:api`, CP1 against the stub, then the server | A | done: contract check green; 43/46 e2e on the stub and on the real server (3 skip by design) |
+| Record the demo and redeploy | B | done once; re-record at CP3 so the preview matches the final server |
 
 Tests: `pnpm test` (221 unit), `pnpm e2e` (51 in 1.6 min, including `e2e/demo.spec.ts`, the 3:00 script clicked end to end).
