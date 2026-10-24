@@ -1,7 +1,7 @@
 import { expect, test } from "./fixtures";
 
 test("the shell shows every section and switches role", async ({ page }) => {
-  await page.goto("/");
+  await page.goto("/run");
   const nav = page.getByRole("navigation", { name: "Main" });
   for (const label of ["Storm Run", "Flight File", "Questions", "Policies", "Trace", "Liability & Close", "Judge's Desk", "Proof", "Pitch", "The story"]) {
     await expect(nav.getByRole("link", { name: new RegExp(label) })).toBeVisible();

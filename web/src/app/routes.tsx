@@ -21,7 +21,7 @@ export const router = createBrowserRouter([
   {
     element: <AppShell />,
     children: [
-      { index: true, element: screen(<StormRun />) },
+      { path: "run", element: screen(<StormRun />) },
       { path: "run/:stormId", element: screen(<StormRun />) },
       { path: "flights", element: screen(<FlightFile />) },
       { path: "flights/:flightId", element: screen(<FlightFile />) },
@@ -35,6 +35,7 @@ export const router = createBrowserRouter([
     ],
   },
   { path: "pitch/*", element: <Suspense fallback={null}>{<Pitch />}</Suspense> },
-  // The immersive scroll story (outside the app shell), for the Devpost link and the video.
+  // The immersive scroll story (outside the app shell) is the landing page; /story stays for old links.
+  { index: true, element: <Suspense fallback={null}>{<Story />}</Suspense> },
   { path: "story", element: <Suspense fallback={null}>{<Story />}</Suspense> },
 ]);

@@ -41,7 +41,7 @@ test.describe("story, reduced motion", () => {
     const closing = page.getByTestId("story-closing");
     await closing.scrollIntoViewIfNeeded();
     const run = closing.getByRole("link", { name: /Open the storm run/ });
-    await expect(run).toHaveAttribute("href", "/");
+    await expect(run).toHaveAttribute("href", "/run");
     await expect(closing.getByRole("link", { name: "See the pitch" })).toHaveAttribute("href", "/pitch");
     await expect(closing.getByRole("link", { name: "Bring your own storm" })).toHaveAttribute("href", "/desk");
     expect(errors).toEqual([]);
@@ -67,13 +67,18 @@ test.describe("story, reduced motion", () => {
     await expect(page.locator('[data-section="hero"]')).toContainText("© EUMETSAT");
   });
 
+  test("the story is the landing page", async ({ page }) => {
+    await page.goto("/");
+    await expect(page.getByRole("heading", { level: 1, name: "Storm Éowyn" })).toBeVisible(LOADED);
+  });
+
   test("the closing link opens the storm run", async ({ page }) => {
     await page.goto("/story");
     const closing = page.getByTestId("story-closing");
     await closing.scrollIntoViewIfNeeded();
     await expect(closing).toBeVisible(LOADED);
     await closing.getByRole("link", { name: /Open the storm run/ }).click();
-    await expect(page).toHaveURL(/\/$/);
+    await expect(page).toHaveURL(/\/run$/);
     await expect(page.getByTestId("storm-headline")).toContainText("5,292");
   });
 });

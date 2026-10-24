@@ -76,7 +76,7 @@ export default function PitchScreen() {
       if (!action) return;
       e.preventDefault();
       if (action.type === "go") go(action.to);
-      else if (action.type === "exit") navigate("/");
+      else if (action.type === "exit") navigate("/run");
       else toggleFullscreen();
     };
     window.addEventListener("keydown", onKey);
@@ -145,7 +145,7 @@ export default function PitchScreen() {
       <div data-deck-ui className={cn("pointer-events-none absolute inset-0 transition-opacity duration-500", idle ? "opacity-0" : "opacity-100")}>
         <button
           type="button"
-          onClick={() => navigate("/")}
+          onClick={() => navigate("/run")}
           className="pointer-events-auto absolute right-4 top-4 inline-flex items-center gap-2 rounded-full bg-navy-900/80 py-2 pl-3 pr-4 text-[13px] text-cloud-300 ring-1 ring-white/10 backdrop-blur-sm transition-colors hover:text-cloud-50"
           aria-label="Leave the pitch (Esc)"
         >

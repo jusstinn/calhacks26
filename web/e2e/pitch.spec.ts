@@ -16,7 +16,7 @@ test.beforeAll(async ({ browser }) => {
   const page = await browser.newPage();
   await page.goto("/pitch/2");
   await expect(page.getByTestId("slide-judged")).toBeVisible({ timeout: 90_000 });
-  await page.goto("/");
+  await page.goto("/run");
   await expect(page.getByRole("navigation", { name: "Main" })).toBeVisible({ timeout: 90_000 });
   await page.close();
 });
@@ -113,7 +113,7 @@ test("out-of-range slides land on the deck, and Esc goes back to the app", async
   await expect(page).toHaveURL(/\/pitch\/5$/);
   await expect(page.getByTestId("slide-cfo")).toBeVisible();
   await page.keyboard.press("Escape");
-  await expect(page).toHaveURL(/\/$/);
+  await expect(page).toHaveURL(/\/run$/);
 });
 
 /** Every text node on the slide, one per entry, so words in neighbouring elements never run together. */

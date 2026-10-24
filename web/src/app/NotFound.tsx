@@ -9,7 +9,7 @@ export default function NotFound() {
       </div>
       <h1 className="display-tight mt-8 text-[30px] text-navy-900">This page isn&rsquo;t on the board.</h1>
       <p className="mt-2 text-[15px] text-slate-500">The link may be old, or the page has moved.</p>
-      <Link to="/" className="mt-7 rounded-lg bg-navy-900 px-4 py-2 text-[14px] font-semibold text-cloud-50">
+      <Link to="/run" className="mt-7 rounded-lg bg-navy-900 px-4 py-2 text-[14px] font-semibold text-cloud-50">
         Back to Storm Run
       </Link>
     </div>

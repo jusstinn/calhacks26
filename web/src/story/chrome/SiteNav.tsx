@@ -41,7 +41,7 @@ export function SiteNav() {
           hidden && "-translate-y-full",
         )}
       >
-        <Link to="/" className="pointer-events-auto flex items-center gap-2.5" aria-label="StormCheck: open the storm run">
+        <Link to="/run" className="pointer-events-auto flex items-center gap-2.5" aria-label="StormCheck: open the storm run">
           <Logo className="h-[20px] w-auto" />
           <span className="text-[17px] font-semibold tracking-[-0.01em] [font-stretch:112%]">StormCheck</span>
         </Link>
@@ -49,7 +49,7 @@ export function SiteNav() {
           <Link to="/pitch" className="hidden opacity-80 transition-opacity hover:opacity-100 sm:inline">
             Pitch
           </Link>
-          <Link to="/" className="whitespace-nowrap rounded-full px-4 py-2 font-medium shadow-[inset_0_0_0_1.5px_currentColor] transition-colors hover:bg-white hover:text-black">
+          <Link to="/run" className="whitespace-nowrap rounded-full px-4 py-2 font-medium shadow-[inset_0_0_0_1.5px_currentColor] transition-colors hover:bg-white hover:text-black">
             <span className="hidden sm:inline">Open the storm run</span>
             <span className="sm:hidden">Open app</span>
           </Link>

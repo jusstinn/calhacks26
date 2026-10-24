@@ -45,7 +45,7 @@ test("the demo, clicked through", async ({ page }) => {
   page.on("pageerror", (e) => errors.push(e.message));
 
   // 0:00 · Storm Run, as the Judge: the overnight story settles on NS31.
-  await page.goto("/");
+  await page.goto("/run");
   await expect(page.getByTestId("storm-headline")).toContainText("5,292 passengers", { timeout: 60_000 });
   await expect(page.locator('g[data-flight="NS31"]')).toHaveAttribute("data-verdict", "notweather", { timeout: 15_000 });
   const callout = page.getByTestId("not-weather-callout");

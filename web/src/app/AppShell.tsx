@@ -16,7 +16,7 @@ import { TimeScrubber, useClock } from "./TimeScrubber";
 import { useSession } from "./session";
 
 const NAV = [
-  { to: "/", label: "Storm Run", icon: CloudLightning, end: true, match: ["/", "/run"] },
+  { to: "/run", label: "Storm Run", icon: CloudLightning, match: ["/run"] },
   { to: "/flights", label: "Flight File", icon: Plane },
   { to: "/questions", label: "Questions", icon: MessagesSquare, badge: "questions" as const },
   { to: "/policies", label: "Policies", icon: ScrollText },
@@ -38,7 +38,6 @@ function NavItems({ onNavigate }: { onNavigate?: () => void }) {
           <NavLink
             key={item.to}
             to={item.to}
-            end={item.end}
             onClick={onNavigate}
             className={({ isActive }) =>
               cn(
@@ -62,7 +61,7 @@ function NavItems({ onNavigate }: { onNavigate?: () => void }) {
         <Presentation className="size-4 shrink-0" aria-hidden="true" />
         Pitch
       </NavLink>
-      <NavLink to="/story" onClick={onNavigate} className="flex h-9 items-center gap-3 rounded-lg px-3 text-[13.5px] text-cloud-400 transition-colors hover:bg-navy-850 hover:text-cloud-100">
+      <NavLink to="/" end onClick={onNavigate} className="flex h-9 items-center gap-3 rounded-lg px-3 text-[13.5px] text-cloud-400 transition-colors hover:bg-navy-850 hover:text-cloud-100">
         <Clapperboard className="size-4 shrink-0" aria-hidden="true" />
         The story
       </NavLink>
@@ -169,7 +168,7 @@ export function AppShell() {
     <div className="min-h-svh bg-background lg:grid lg:grid-cols-[236px_minmax(0,1fr)]">
       {/* Sidebar (desktop) */}
       <aside className="sticky top-0 hidden h-svh flex-col bg-navy-900 px-3 pb-3 pt-4 lg:flex">
-        <NavLink to="/" className="mb-6 flex items-center gap-2.5 px-3 text-cloud-50" aria-label="StormCheck, Storm Run">
+        <NavLink to="/run" className="mb-6 flex items-center gap-2.5 px-3 text-cloud-50" aria-label="StormCheck, Storm Run">
           <Logo className="h-[17px] w-auto" />
           <span className="text-[16px] font-semibold tracking-[-0.01em] [font-stretch:112%]">StormCheck</span>
         </NavLink>

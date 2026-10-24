@@ -29,7 +29,7 @@ export class ErrorBoundary extends Component<Props, { failed: boolean }> {
           <button type="button" onClick={() => this.setState({ failed: false })} className="rounded-lg bg-navy-900 px-4 py-2 text-[14px] font-semibold text-cloud-50">
             Try again
           </button>
-          <a href="/" className="rounded-lg px-4 py-2 text-[14px] text-slate-600 shadow-[inset_0_0_0_1px_var(--color-cloud-300)]">
+          <a href="/run" className="rounded-lg px-4 py-2 text-[14px] text-slate-600 shadow-[inset_0_0_0_1px_var(--color-cloud-300)]">
             Back to Storm Run
           </a>
         </div>
